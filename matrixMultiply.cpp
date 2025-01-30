@@ -4,22 +4,28 @@
 #include <vector>
 
 int main(int argc, char* argv[]) {
-    const int N = 1000; // Size of the matrices
-    std::vector<std::vector<int>> A(N, std::vector<int>(N));
-    std::vector<std::vector<int>> B(N, std::vector<int>(N));
-    std::vector<std::vector<int>> C(N, std::vector<int>(N, 0));
-    
     // Check if the number of threads is provided as an argument
     int numThreads = 1; // Default to 1 thread
+	int N = 1000; // Size of the matrices
+	
+	// Check for arguments specifying thread count and matrix size
     if (argc > 1) {
         numThreads = std::atoi(argv[1]); // Convert argument to integer
         omp_set_num_threads(numThreads); // Set the number of threads
     } else {
-        //std::cerr << "Usage: " << argv[0] << " <number_of_threads>" << std::endl;
-		//return 1;
 		// Use the default value
 		omp_set_num_threads(numThreads);        
     }
+	if (argc > 2) {
+		N = std::atoi(argv[2]); // Convert argument to integer		
+	}
+	
+	// Output the number of threads being used
+    std::cout << "Matrix size set to " << N << std::endl;
+
+    std::vector<std::vector<int>> A(N, std::vector<int>(N));
+    std::vector<std::vector<int>> B(N, std::vector<int>(N));
+    std::vector<std::vector<int>> C(N, std::vector<int>(N, 0));
 	
 	omp_set_num_threads(numThreads);	
 
