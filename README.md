@@ -3,4 +3,4 @@ Short example code using OpenMP
 
 To compile on Linux:
 
-g++ -fopenmp matrixMultiply.cpp -o mm.exe
+g++ -fopenmp -O2 matrixMultiply.cpp -o mm.exe
